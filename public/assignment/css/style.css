@@ -5,8 +5,7 @@ input, textarea {
 body {
     padding-top: 60px;
     padding-bottom: 60px;
-    overflow-x: hidden;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .navbar-default {
