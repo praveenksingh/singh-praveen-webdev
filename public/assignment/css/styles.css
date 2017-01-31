@@ -10,8 +10,8 @@ body {
 }
 
 .navbar-default {
-    background-color: #454B4F;
-    border-bottom-color: #000;
+    background-color: white;
+    border-bottom-color: white;
 }
 
 .navbar-default .navbar-brand {
@@ -53,7 +53,7 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     overflow-y: auto;
-    border-left: 1px solid gre;
+    border-left: 1px solid grey;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -86,8 +86,13 @@ body {
     color: white;
 }
 
+.navbar a:hover {
+    color: #bce8f1;
+    background: transparent;
+}
+
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-    color: white;
+    color: #b9def0;
     background-color: transparent;
 }
 
@@ -97,7 +102,7 @@ body {
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     color: white;
-    background-color: rgba(0,0,0,0.2);
+    background-color: transparent;
 }
 
 .panel-default>.panel-heading {

@@ -10,7 +10,7 @@
     <link href="../css/styles.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta charset="UTF-8">
-    <title>Website List</title>
+    <title>Website Edit</title>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -145,20 +145,33 @@
         <!--Your Website has been created-->
         <!--<span class="glyphicon glyphicon-remove pull-right"></span>-->
         <!--</div>-->
-
-        <label for="name">Name</label>
-        <input class="form-control" id="WidgetImageName" placeholder="Name">
-        <label for="name">Text</label>
-        <input class="form-control" id="WidgetImageName" placeholder="Text">
-        <label for="name">URL</label>
-        <input class="form-control" id="WidgetImageURL" placeholder="URL">
-        <label for="name">Width</label>
-        <input class="form-control" id="WidgetImageWidth" placeholder="Width">
-        <div>
-            <a class="btn btn-danger btn-block" href="widget-list.html">
-                Delete
-            </a>
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input class="form-control" id="WidgetImageName" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="name">Text</label>
+                <input class="form-control" id="WidgetImageText" placeholder="Text">
+            </div>
+            <div class="form-group">
+                <label for="name">URL</label>
+                <input class="form-control" id="WidgetImageURL" placeholder="URL">
+            </div>
+            <div class="form-group">
+                <label for="name">Width</label>
+                <input class="form-control" id="WidgetImageWidth" placeholder="Width">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">Upload</label>
+                <input type="file" class="form-control-file" id="uploadedImage">
+            </div>
+            <div class="form-group">
+                <a class="btn btn-danger btn-block" href="widget-list.html">
+                    Delete
+                </a>
+            </div>
+        </form>
     </div>
 </div>
 
