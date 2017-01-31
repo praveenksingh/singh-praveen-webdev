@@ -7,7 +7,6 @@ body {
     padding-bottom: 60px;
     overflow: auto;
     overflow-x: hidden;
-    overflow-y: scroll;
 }
 
 .navbar-default {
