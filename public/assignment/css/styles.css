@@ -150,3 +150,6 @@ body {
 .navbar-default.navbar-fixed-bottom {
     border-top-color: #000;
 }
+.play-button-right {
+    padding-left: 10px;
+}
