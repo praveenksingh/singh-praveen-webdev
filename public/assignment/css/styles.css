@@ -2,6 +2,10 @@ input, textarea {
     margin-bottom: 5px;
 }
 
+a, u {
+    text-decoration: none !important;
+}
+
 body {
     padding-top: 60px;
     padding-bottom: 60px;
