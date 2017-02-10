@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
+    <link href="../css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="../js/angular.js"></script>
+    <script src="../js/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta charset="UTF-8">
-    <title>Assignment Home Page</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<base href="/assignment-wed">-->
 </head>
 <body>
-    <h1>Assignment Home Page</h1>
+    <div ng-view></div>
 </body>
 </html>
