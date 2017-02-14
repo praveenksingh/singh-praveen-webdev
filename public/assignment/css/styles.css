@@ -6,6 +6,7 @@ textarea {
 body {
     padding-top: 60px;
     padding-bottom: 55px;
+    overflow-x: hidden;
 }
 
 .no-left-padding {

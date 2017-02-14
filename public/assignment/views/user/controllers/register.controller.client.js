@@ -7,14 +7,14 @@
         var vm = this;
 
         // event handlers
-        vm.addUser = addUser;
+        vm.createUser = createUser;
 
         function init() {
         }
         init();
 
-        function addUser(user) {
-            var userAdded = UserService.addUser(user.username, user.password);
+        function createUser(user) {
+            var userAdded = UserService.createUser(user);
             if(userAdded) {
                 $location.url("/user/"+userAdded._id);
             } else {

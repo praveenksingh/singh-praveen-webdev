@@ -13,10 +13,32 @@
         var api = {
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
-            "addUser": addUser,
-            "updateUser": updateUser
+            "createUser": createUser,
+            "updateUser": updateUser,
+            "findUserByUserName": findUserByUserName,
+            "deleteUser" : deleteUser
         };
         return api;
+
+        function findUserByUserName(userName) {
+            for(var u in users) {
+                var user = users[u];
+                if( user.username === userName ) {
+                    return angular.copy(user);
+                }
+            }
+            return null;
+        }
+
+        function deleteUser(userId) {
+            for(var u in users) {
+                var user = users[u];
+                if( user._id === userId ) {
+                    return true;
+                }
+            }
+            return null;
+        }
 
         function updateUser(uid, newUser) {
             for(var u in users) {
@@ -29,9 +51,9 @@
             return null;
         }
 
-        function addUser(uname, pword) {
+        function createUser(userNew) {
             var id = (Math.random()*1000 | 0).toString();
-            var use = {"_id": id, "username": uname, "password": pword, "firstName" : "", "lastName":""};
+            var use = {"_id": id, "username": userNew.name, "password": userNew.password, "firstName" : "", "lastName":""};
             users.push(use);
             return use;
         }
