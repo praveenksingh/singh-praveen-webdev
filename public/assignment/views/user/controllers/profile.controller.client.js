@@ -7,9 +7,9 @@
         var vm = this;
         var userId = $routeParams['uid'];
 
-        vm.updateUse = updateUse;
+        vm.updateUser = updateUser;
 
-        function updateUse (newUser) {
+        function updateUser (newUser) {
             var userId = newUser._id;
             var user = UserService.updateUser(userId, newUser);
             if(user == null) {

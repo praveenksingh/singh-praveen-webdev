@@ -53,7 +53,7 @@
 
         function createUser(userNew) {
             var id = (Math.random()*1000 | 0).toString();
-            var use = {"_id": id, "username": userNew.name, "password": userNew.password, "firstName" : "", "lastName":""};
+            var use = {"_id": id, "username": userNew.username, "password": userNew.password, "firstName" : "", "lastName":""};
             users.push(use);
             return use;
         }

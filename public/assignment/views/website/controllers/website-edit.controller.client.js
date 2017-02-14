@@ -10,7 +10,7 @@
         vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
+            vm.websites = WebsiteService.findAllWebsitesByUser(vm.userId);
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
         }
         init();
