@@ -1,22 +1,22 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("WebsiteNewController", WebsiteNewController);
+        .controller("PageNewController", PageNewController);
 
-    function WebsiteNewController($routeParams, $location, WebsiteService) {
+    function PageNewController($routeParams, $location, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
-        vm.createWebsite = createWebsite;
+        vm.websiteId = $routeParams.wid;
+        vm.createPage = createPage;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesByUser(vm.userId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
         }
         init();
 
-        function createWebsite (website) {
-            WebsiteService.createWebsite(vm.userId, website);
-            //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website");
+        function createPage (page) {
+            PageService.createPage(vm.websiteId, page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         };
     }
 })();

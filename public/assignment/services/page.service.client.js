@@ -33,7 +33,7 @@
         function findPageById(pageId) {
             for(var w in pages) {
                 if(pages[w]._id === pageId) {
-                    return pages[w];
+                    return angular.copy(pages[w]);
                 }
             }
             return null;
@@ -41,7 +41,7 @@
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
+            page._id = (new Date()).getTime().toString();
             pages.push(page);
         }
 
