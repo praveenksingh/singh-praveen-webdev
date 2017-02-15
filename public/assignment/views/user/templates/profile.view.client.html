@@ -55,6 +55,7 @@
            placeholder="req4321"/>
 
     <a href="#/user/{{model.user._id}}/website" class="btn btn-success btn-block">Websites</a>
+    <a ng-click="model.deleteUser()" class="btn btn-danger btn-block">Delete</a>
     <a ng-click="model.updateUser(model.user)" class="btn btn-primary btn-block">Update</a>
     <a href="#/login" class="btn btn-danger btn-block">Logout</a>
 </div>

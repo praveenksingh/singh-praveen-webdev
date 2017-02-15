@@ -34,7 +34,7 @@
             for(var u in users) {
                 var user = users[u];
                 if( user._id === userId ) {
-                    return true;
+                    users.splice(u,1);
                 }
             }
             return null;
