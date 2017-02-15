@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid bg-primary">
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -10,13 +10,17 @@
         </div>
     </div>
 </nav>
+<div ng-show="model.widgetType" class="ng-hide container-fluid">
+ <ng-include src="model.getEditorTemplateUrl(model.widgetType)"></ng-include>
+    </div>
 
+<div ng-hide="model.widgetType" class="ng-hide">
 <div class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-6">
-                    <a href="../../../widget/widget-heading.html">
+                    <a ng-click="model.setWidgetTypeType('HEADER')">
                         Header
                     </a>
                 </div>
@@ -32,7 +36,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-6">
-                    <a>HTML</a>
+                    <a ng-click="model.setWidgetTypeType('HTML')">HTML</a>
                 </div>
             </div>
         </li>
@@ -60,7 +64,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-6">
-                    <a href="../../../widget/widget-image.html">
+                    <a ng-click="model.setWidgetTypeType('IMAGE')">
                         Image
                     </a>
                 </div>
@@ -69,7 +73,7 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-xs-6">
-                    <a href="../../../widget/widget-youtube.html">
+                    <a ng-click="model.setWidgetTypeType('YOUTUBE')">
                         YouTube
                     </a>
                 </div>
@@ -91,6 +95,7 @@
         </li>
     </ul>
 
+</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

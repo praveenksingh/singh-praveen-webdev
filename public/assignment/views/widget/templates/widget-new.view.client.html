@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <a href="../user/profile.html">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+            <a href="website-new.html">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
@@ -16,14 +16,15 @@
     </div>
 </nav>
 
+
 <div class="container-fluid"
-     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+     ng-include="model.getEditorTemplateUrl(model.widgetType)">
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#/user/{{model.userId}}"></a>
+            <a class="navbar-brand" href="#">Footer</a>
         </div>
     </div>
 </nav>

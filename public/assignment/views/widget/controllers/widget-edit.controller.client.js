@@ -19,5 +19,7 @@
         function getEditorTemplateUrl(type) {
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
+
+        
     }
 })();
