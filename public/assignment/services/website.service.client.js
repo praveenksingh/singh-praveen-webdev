@@ -21,8 +21,13 @@
         };
         return api;
 
-        function updateWebsite() {
-            return null;
+        function updateWebsite(websiteId, website) {
+            for(var w in websites) {
+                if(websites[w]._id === websiteId) {
+                    websites[w].name = website.name;
+                    websites[w].description = website.description;
+                }
+            }
         }
 
         function findWebsiteById(wid) {
@@ -44,6 +49,7 @@
         function createWebsite(userId, website) {
             website.developerId = userId;
             website._id = (new Date()).getTime();
+            website.created = new Date();
             websites.push(website);
         }
 

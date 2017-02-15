@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="navbar-text pull-right ">
-                <a href="website-list.view.client.html">
+                <a ng-click="model.updateWebsite(model.website)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -56,7 +56,7 @@
                         {{website.name}}
                     </div>
                     <div class="col-xs-2">
-                        <a href="/user/{{model.userId}}/website/{{website._id}}">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>
@@ -73,15 +73,20 @@
         <form>
             <div class="form-group">
                 <label for="name">Website Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Website Name" value="Blogger"/>
+                <input type="text"
+                       ng-model="model.website.name"
+                       class="form-control" id="name" placeholder="Website Name" />
             </div>
             <div class="form-group">
                 <label for="description">Website Description</label>
-                <textarea rows="3" class="form-control" id="description" placeholder="Description">Blogger is blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by google in 2003. Generally the blogs are hosted by Google at a subdomain of blogspot.com.
-                </textarea>
+                <textarea ng-model="model.website.description"
+                          rows="3"
+                          class="form-control"
+                          id="description"
+                          placeholder="Description"></textarea>
             </div>
             <div class="form-group">
-                    <a class="btn btn-danger btn-block" href="website-list.view.client.html">
+                    <a class="btn btn-danger btn-block" ng-click="model.deleteWebsite()">
                     Delete
                     </a>
             </div>

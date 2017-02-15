@@ -66,3 +66,36 @@ body {
     border-bottom-left-radius: 5px;
     opacity: 0.7;
 }
+
+.navbar a:hover {
+    color: lightblue;
+    background: transparent;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+    color: white;
+    background-color: transparent;
+}
+
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover {
+    color: white;
+    background-color: #555555;
+}
+
+.panel-heading a {
+    color: white;
+}
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: #b9def0;
+    background-color: transparent;
+}
+
+.navbar-text.pull-left {
+    margin-left: 0px;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: white;
+    background-color: transparent;
+}
