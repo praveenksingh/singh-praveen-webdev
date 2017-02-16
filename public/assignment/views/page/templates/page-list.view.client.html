@@ -21,11 +21,11 @@
     <ul class="list-group">
         <li class="list-group-item">
             <div class="row">
-                <div class="col-xs-11">
+                <div class="col-xs-6 col-sm-11">
                     Name
                     <span class="glyphicon glyphicon-triangle-top"></span>
                 </div>
-                <div class="col-xs-1 col-xs-6">
+                <div class="col-sm-1 col-xs-6">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="pull-right">
                         <span class="glyphicon glyphicon-plus"></span>
                     </a>
@@ -34,12 +34,12 @@
         </li>
         <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
-                <div class="col-xs-11">
+                <div class="col-xs-6 col-sm-11">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
                 </div>
-                <div class="col-xs-1 col-xs-6">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
-                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                <div class="col-sm-1 col-xs-6">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
+                        <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
             </div>
