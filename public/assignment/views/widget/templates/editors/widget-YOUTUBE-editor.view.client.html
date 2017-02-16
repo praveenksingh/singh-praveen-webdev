@@ -1,4 +1,21 @@
 <h1>YOUTUBE Editor</h1>
+<label>Name</label>
+<input type="text" class="form-control" ng-model="model.widget.name" placeholder="Name"/>
 
+<label>Text</label>
+<input type="text" class="form-control" ng-model="model.widget.text" placeholder="Text"/>
 
-{{model.widget}}
+<label>URL</label>
+<input type="url" class="form-control" placeholder="URL" ng-model="model.widget.url"/>
+
+<label>Width</label>
+<input class="form-control" ng-model="model.widget.width" placeholder="Width"/>
+
+<a ng-show="model.addSe" ng-click="model.addWidget(model.widget)" class="btn btn-primary btn-block">
+    Add Youtube
+</a>
+<div ng-show="model.updateWi">
+    <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>

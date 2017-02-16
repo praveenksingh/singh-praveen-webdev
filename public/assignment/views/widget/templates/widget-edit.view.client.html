@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid bg-primary">
         <div class="navbar-text pull-left">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
-                <span class="glyphicon glyphicon-plus"></span>
+            <a ng-click="model.updateWidget(model.widget)">
+                <span class="glyphicon glyphicon-ok"></span>
             </a>
         </div>
         <div class="navbar-header">
@@ -21,9 +21,9 @@
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
+    <div class="container-fluid bg-primary">
         <div class="navbar-header">
-            <a href="#/user/{{model.userId}}"></a>
+            <a class="navbar-brand" href="#/user/{{model.userId}}"></a>
         </div>
     </div>
 </nav>

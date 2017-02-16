@@ -1,5 +1,4 @@
 <h1>HTML Editor</h1>
-
 <label>Name</label>
 <input ng-model="model.widget.name" class="form-control"/>
 
@@ -7,7 +6,7 @@
 <input ng-model="model.widget.text" class="form-control"/>
 
 <label>Size</label>
-<select class="form-control">
+<select ng-model="model.widget.size" class="form-control">
     <option>1</option>
     <option>2</option>
     <option>3</option>
@@ -15,4 +14,9 @@
     <option>5</option>
     <option>6</option>
 </select>
-{{model.widget}}
+
+<div ng-show="model.updateWi">
+    <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
+        Delete
+    </a>
+</div>
