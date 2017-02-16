@@ -1,22 +1,24 @@
-<h1>HTML Editor</h1>
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+<h1>HTML</h1>
+<form>
+    <label>Name</label>
+    <input ng-model="model.widget.name" class="form-control form-group"/>
 
-<label>Text</label>
-<input ng-model="model.widget.text" class="form-control"/>
+    <label>Text</label>
+    <input ng-model="model.widget.text" class="form-control form-group"/>
 
-<label>Size</label>
-<select ng-model="model.widget.size" class="form-control">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-</select>
+    <label>Size</label>
+    <select ng-model="model.widget.size" class="form-control form-group">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+    </select>
 
-<div ng-show="model.updateWi">
-    <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
-        Delete
-    </a>
-</div>
+    <div ng-show="model.updateWi" class="form-group">
+        <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
+            Delete
+        </a>
+    </div>
+</form>
