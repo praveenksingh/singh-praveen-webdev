@@ -11,11 +11,22 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+        // vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
 
         function getWidgetTemplateUrl(widgetType) {
             var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
             return url;
+        }
+
+        function init() {
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .success(renderWidgets);
+        }
+        init();
+
+        function renderWidgets(widgets) {
+            vm.widgets = widgets;
         }
 
         function getTrustedHtml(html) {

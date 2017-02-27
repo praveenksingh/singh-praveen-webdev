@@ -33,9 +33,18 @@
             widget.widgetType = vm.widgetType;
             if(vm.widgetType === "YOUTUBE" || vm.widgetType === "IMAGE")
                 widget.width = widget.width + "%";
-            WidgetService.createWidget(vm.pageId, widget);
-            vm.showFlag = false;
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+
+            var promise = WidgetService.createWidget(vm.pageId, widget);
+            promise.success(function(){
+                vm.showFlag = false;
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            })
+            .error(function () {
+                vm.error = 'sorry could not create';
+            });
+
+
+
         }
     }
 })();
