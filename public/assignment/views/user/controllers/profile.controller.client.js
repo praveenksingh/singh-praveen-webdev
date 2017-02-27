@@ -3,31 +3,41 @@
         .module("WebAppMaker")
         .controller("ProfileController", profileController);
 
-    function profileController($routeParams, $location, UserService) {
+    function profileController($routeParams, UserService, $location) {
         var vm = this;
         var userId = $routeParams['uid'];
 
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
 
-        function updateUser (newUser) {
-            var userId = newUser._id;
-            var user = UserService.updateUser(userId, newUser);
-            if(user == null) {
-                vm.error = "unable to update user";
-            } else {
-                vm.message = "user successfully updated"
-            }
+        function init() {
+            var promise = UserService.findUserById(userId);
+            promise.success(function(user){
+                vm.user = user;
+            });
+        }
+        init();
+
+        function updateUser(newUser) {
+            UserService
+                .updateUser(userId, newUser)
+                .success(function (user) {
+                    if(user != null) {
+                        vm.message = "User Successfully Updated!"
+                    } else {
+                        vm.error = "Unable to update user";
+                    }
+                });
         }
 
         function deleteUser() {
-            UserService.deleteUser(userId);
-            $location.url("/login");
+            var promise = UserService.deleteUser(userId)
+            promise.success($location.url("/login"))
         }
 
-        var user = UserService.findUserById(userId);
-        vm.user = user;
-
-        console.log(user);
+        // var user = UserService.findUserById(userId);
+        // vm.user = user;
+        //
+        // console.log(user);
     }
 })();
