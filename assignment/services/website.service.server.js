@@ -1,5 +1,6 @@
 module.exports = function (app) {
     app.get('/api/user/:userId/website', findAllWebsites);
+    app.post('/api/user/:userId/website', createWebsite);
 
     var websites = [
         { "_id": "123", "name": "Facebook", update: new Date(),    "developerId": "456", "description": "Lorem" },
@@ -20,5 +21,15 @@ module.exports = function (app) {
             }
         }
         res.json(sites);
+    }
+
+    function createWebsite(req, res) {
+        var userId = req.params.userId;
+        var website = req.body;
+        website.developerId = userId;
+        website._id = (new Date()).getTime().toString();;
+        website.update = new Date();
+        websites.push(website);
+        res.sendStatus(200);
     }
 };

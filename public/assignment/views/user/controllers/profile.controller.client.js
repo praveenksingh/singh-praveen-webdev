@@ -1,43 +1,49 @@
-(function () {
+(function(){
     angular
         .module("WebAppMaker")
         .controller("ProfileController", profileController);
 
-    function profileController($routeParams, UserService, $location) {
+    function profileController($routeParams, $location, UserService) {
         var vm = this;
         var userId = $routeParams['uid'];
-
-        vm.updateUser = updateUser;
-        vm.deleteUser = deleteUser;
+        vm.unregisterUser = unregisterUser;
 
         function init() {
-            var promise = UserService.findUserById(userId);
-            promise.success(function(user){
-                vm.user = user;
-            });
+            UserService
+                .findUserById(userId)
+                .success(renderUser);
         }
         init();
 
-        function updateUser(newUser) {
+        function unregisterUser(user) {
+            var answer = confirm("Are you sure?");
+            // console.log(answer);
+            if(answer) {
+                UserService
+                    .deleteUser(user._id)
+                    .success(function () {
+                        $location.url("/login");
+                    })
+                    .error(function () {
+                        vm.error = 'unable to remove user';
+                    });
+            }
+        }
+
+        function renderUser(user) {
+            vm.user = user;
+            // console.log(user);
+        }
+
+        vm.update = function (newUser) {
             UserService
                 .updateUser(userId, newUser)
-                .success(function (user) {
-                    if(user != null) {
-                        vm.message = "User Successfully Updated!"
-                    } else {
-                        vm.error = "Unable to update user";
-                    }
+                .success(function (response) {
+                    vm.message = "user successfully updated"
+                })
+                .error(function () {
+                    vm.error = "unable to update user";
                 });
-        }
-
-        function deleteUser() {
-            var promise = UserService.deleteUser(userId)
-            promise.success($location.url("/login"))
-        }
-
-        // var user = UserService.findUserById(userId);
-        // vm.user = user;
-        //
-        // console.log(user);
+        };
     }
 })();

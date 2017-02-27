@@ -81,7 +81,7 @@ module.exports = function (app) {
         if(user) {
             res.send(user);
         } else {
-            res.sendStatus(404).send('User not found for username: ' + username);
+            res.status(404).send('User not found for username: ' + username);
         }
     }
 
@@ -94,7 +94,7 @@ module.exports = function (app) {
         if(user) {
             res.send(user);
         } else {
-            res.sendStatus(404).send('User not found for username: ' + username + ' and password: ' + password);
+            res.status(404).send('User not found for username: ' + username + ' and password: ' + password);
         }
     }
 };

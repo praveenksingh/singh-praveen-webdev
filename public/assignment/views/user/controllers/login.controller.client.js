@@ -17,7 +17,7 @@
                 .success(function (user) {
                     var loginUser = user;
                     if(loginUser != null) {
-                        $location.url('/profile/' + loginUser._id);
+                        $location.url('/user/' + loginUser._id);
                     } else {
                         vm.error = 'user not found';
                     }

@@ -5,21 +5,24 @@
     
     function registerController($location, UserService) {
         var vm = this;
-
-        // event handlers
         vm.createUser = createUser;
 
-        function init() {
-        }
-        init();
-
         function createUser(user) {
-            var userAdded = UserService.createUser(user);
-            if(userAdded) {
-                $location.url("/user/"+userAdded._id);
-            } else {
-                vm.error = "Error Creating User";
-            }
+            UserService
+                .findUserByUserName(user.username)
+                .success(function (user) {
+                    vm.error = "Sorry username is already taken"
+                })
+                .error(function(){
+                    UserService
+                        .createUser(user)
+                        .success(function(user){
+                            $location.url('/user/' + user._id);
+                        })
+                        .error(function () {
+                            vm.error = 'sorry could not register';
+                        });
+                });
         }
     }
 })();

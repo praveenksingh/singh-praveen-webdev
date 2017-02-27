@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .factory("WebsiteService", WebsiteService);
     
-    function WebsiteService() {
+    function WebsiteService($http) {
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem", created: new Date() },
             { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem", created: new Date() },
@@ -47,20 +47,11 @@
         }
 
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            website._id = (new Date()).getTime().toString();;
-            website.created = new Date();
-            websites.push(website);
+            return $http.post("/api/user/" + userId + "/website", website);
         }
 
         function findAllWebsitesByUser(userId) {
-            var sites = [];
-            for(var w in websites) {
-                if(websites[w].developerId === userId) {
-                    sites.push(websites[w]);
-                }
-            }
-            return sites;
+            return $http.get("/api/user/"+userId+"/website");
         }
     }
 })();
