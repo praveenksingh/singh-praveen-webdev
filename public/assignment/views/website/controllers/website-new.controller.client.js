@@ -20,9 +20,8 @@
         }
 
         function createWebsite(website) {
-            WebsiteService
-                .createWebsite(vm.userId, website)
-                .success(function(){
+            var promise = WebsiteService.createWebsite(vm.userId, website)
+            promise.success(function(){
                     $location.url("/user/"+vm.userId+"/website");
                 })
                 .error(function () {

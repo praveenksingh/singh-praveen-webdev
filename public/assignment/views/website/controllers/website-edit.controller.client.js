@@ -28,20 +28,18 @@
         }
 
         function updateWebsite(updatedWebsite) {
-            WebsiteService
-                .updateWebsite(vm.websiteId, updatedWebsite)
-                .success(function () {
+            var promise = WebsiteService.updateWebsite(vm.websiteId, updatedWebsite)
+            promise.success(function () {
                     $location.url("/user/"+vm.userId+"/website");
                 })
                 .error(function () {
-                    vm.error = "unable to delete website";
+                    vm.error = "unable to update website";
                 });
         }
 
         function deleteWebsite () {
-            WebsiteService
-                .deleteWebsite(vm.websiteId)
-                .success(function () {
+            var promise = WebsiteService.deleteWebsite(vm.websiteId)
+            promise.success(function () {
                     $location.url("/user/"+vm.userId+"/website");
                 })
                 .error(function () {
