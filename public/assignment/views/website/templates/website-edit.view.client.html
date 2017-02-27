@@ -66,10 +66,9 @@
     </div>
     <div class="col-xs-12 col-sm-8 wbdv-right-pane">
 
-        <!--<div class="alert alert-success" role="alert">-->
-        <!--Your Website has been created-->
-        <!--<span class="glyphicon glyphicon-remove pull-right"></span>-->
-        <!--</div>-->
+        <div class="alert alert-danger" ng-show="model.error">
+            {{model.error}}
+        </div>
         <form>
             <div class="form-group">
                 <label for="name">Website Name</label>

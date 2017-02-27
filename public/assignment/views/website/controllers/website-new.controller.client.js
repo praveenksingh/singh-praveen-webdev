@@ -11,7 +11,7 @@
         function init() {
             WebsiteService
                 .findAllWebsitesByUser(vm.userId)
-                .success(renderWebSites)
+                .success(renderWebSites);
         }
         init();
 
