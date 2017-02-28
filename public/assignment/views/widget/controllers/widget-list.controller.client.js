@@ -5,6 +5,7 @@
 
     function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
+        vm.updateWidgetsPos = updateWidgetsPos;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
@@ -27,6 +28,14 @@
 
         function renderWidgets(widgets) {
             vm.widgets = widgets;
+        }
+
+        function updateWidgetsPos(initial, final) {
+            WidgetService
+                .updatesWidgetPosByPageId(vm.pageId, initial, final)
+                .error(function () {
+                    vm.error("could not update positions")
+                })
         }
 
         function getTrustedHtml(html) {

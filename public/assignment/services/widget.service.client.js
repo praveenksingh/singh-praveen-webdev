@@ -10,7 +10,8 @@
             "findWidgetById": findWidgetById,
             "createWidget": createWidget,
             "updateWidget": updateWidget,
-            "deleteWidget" : deleteWidget
+            "deleteWidget" : deleteWidget,
+            "updatesWidgetPosByPageId" : updatesWidgetPosByPageId
         };
         return api;
 
@@ -31,6 +32,10 @@
 
         function findWidgetsByPageId(pageId) {
             return $http.get("/api/page/"+pageId+"/widget");
+        }
+
+        function updatesWidgetPosByPageId(pageId, initial, final) {
+            return $http.put("/api/page/"+pageId+"/widget?initial="+initial+"&final="+final);
         }
     }
 })();
