@@ -11,9 +11,22 @@
             "createWidget": createWidget,
             "updateWidget": updateWidget,
             "deleteWidget" : deleteWidget,
-            "updatesWidgetPosByPageId" : updatesWidgetPosByPageId
+            "updatesWidgetPosByPageId" : updatesWidgetPosByPageId,
+            "uploadImage" : uploadImage
         };
         return api;
+
+        function uploadImage(data) {
+            var fd = new FormData();
+            for(var key in data)
+                fd.append(key, data[key]);
+            return $http.post("/api/upload", fd,{
+                transformRequest: angular.indentity,
+                headers: {
+                    'Content-Type': undefined
+                }
+            });
+        }
 
         function updateWidget(widgetId, newWidget) {
             return $http.put("/api/widget/"+widgetId, newWidget);

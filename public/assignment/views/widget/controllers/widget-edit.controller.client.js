@@ -49,6 +49,6 @@
                 vm.error = "unable to update widget";
             });
         }
-        
+
     }
 })();

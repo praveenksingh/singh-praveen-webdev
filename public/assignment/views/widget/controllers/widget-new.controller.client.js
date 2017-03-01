@@ -3,7 +3,8 @@
         .module("WebAppMaker")
         .controller("WidgetNewController", WidgetNewController);
 
-    function WidgetNewController($routeParams,$location, WidgetService) {
+    function WidgetNewController($routeParams,$location, WidgetService,$scope) {
+        // $scope.widget = {};
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -11,6 +12,7 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.setWidgetTypeType = setWidgetTypeType;
         vm.addWidget = addWidget;
+        vm.uploadImg = uploadImg;
 
         function init(){
             vm.showFlag = false;
@@ -42,9 +44,14 @@
             .error(function () {
                 vm.error = 'sorry could not create';
             });
+        }
 
-
-
+        function uploadImg(widget) {
+            var promise = WidgetService.uploadImage(widget);
+            promise.success(function (url) {
+               vm.url = url;
+            });
+            console.log(vm.url);
         }
     }
 })();
