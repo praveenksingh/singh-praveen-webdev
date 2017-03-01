@@ -1,3 +1,9 @@
+<div ng-show="model.error" class="alert alert-danger" role="alert">
+    {{model.error}}
+</div>
+<div class="alert alert-success" ng-show="model.message">
+    {{model.message}}
+</div>
 <h2>IMAGE</h2>
 <form>
     <label>Name</label>
@@ -6,13 +12,13 @@
     <label>Text</label>
     <input type="text" class="form-control form-group" ng-model="model.widget.text" placeholder="Text"/>
 
-    <label>URL</label>
-    <input type="url" class="form-control form-group" ng-model="model.widget.url" placeholder="URL"/>
+    <!--<label>URL</label>-->
+    <!--<input type="url" class="form-control form-group" ng-model="model.widget.url" placeholder="URL"/>-->
 
     <label>Width</label>
     <input  class="form-control form-group" ng-model="model.widget.width" placeholder="Width" value={{model.widget.width}}/>
 
-    <input  class="form-control form-group" name="myFile"   type="file" file-model="model.widget.myFile" class="form-control"/>
+    <input  class="form-control form-group" name="myFile"   type="file" wbdv-file="model.widget.myFile" class="form-control"/>
     <!--<input  name="width"    value="{{model.widget.width}}" style="display: none"/>-->
     <button ng-show="model.addSe" type="submit"  ng-click="model.uploadImg(model.widget)"  class="btn btn-block btn-primary">Upload Image</button>
 

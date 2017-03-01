@@ -23,7 +23,6 @@ module.exports = function (app) {
     ];
 
     function uploadImage(req, res) {
-        // console.log("praveen");
         var widgetId      = req.body.widgetId;
         var width         = req.body.width;
         var myFile        = req.file;
@@ -33,7 +32,7 @@ module.exports = function (app) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-        res.json(path);
+        res.json({"path" : path, "filename" : filename, "mimetype" : mimetype});
     }
 
 
@@ -52,7 +51,7 @@ module.exports = function (app) {
         widgetsList.splice(initial, 1);
         widgetsList.splice(final,0, widget);
         widgets.push.apply(widgets, widgetsList);
-        res.json(widgets);
+        res.sendStatus(200);
     }
 
     function findAllWidgetsForPage(req, res) {

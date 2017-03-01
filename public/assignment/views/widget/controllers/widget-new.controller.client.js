@@ -34,8 +34,17 @@
         function addWidget(widget) {
             widget.widgetType = vm.widgetType;
             if(vm.widgetType === "YOUTUBE" || vm.widgetType === "IMAGE")
-                widget.width = widget.width + "%";
+                if(widget.width === undefined)
+                    widget.width = "100%";
+                else
+                    widget.width = widget.width + "%";
 
+                if(vm.widgetType === "IMAGE" && vm.imageUrl === undefined){
+                    vm.error = 'Upload Image First';
+                    return;
+                }else{
+                    widget.url = vm.imageUrl;
+                }
             var promise = WidgetService.createWidget(vm.pageId, widget);
             promise.success(function(){
                 vm.showFlag = false;
@@ -48,10 +57,14 @@
 
         function uploadImg(widget) {
             var promise = WidgetService.uploadImage(widget);
-            promise.success(function (url) {
-               vm.url = url;
+            promise.success(function(res) {
+                console.log(res);
+                vm.imageUrl = res.path;
+                vm.mimetype = res.mimetype;
+                vm.message = "image successfully uploaded"
+            }).error(function () {
+                vm.error("could not upload image");
             });
-            console.log(vm.url);
         }
     }
 })();
