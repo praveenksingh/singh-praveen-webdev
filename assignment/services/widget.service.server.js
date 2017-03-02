@@ -51,6 +51,7 @@ module.exports = function (app) {
     function uploadImage(req, res) {
         var widget      = req.body;
         var width       = req.body.width;
+        var text        = req.body.text;
         var widgetId    = req.body.widgetId;
         var widgetType  = req.body.widgetType;
         var myFile      = req.file;
@@ -61,6 +62,8 @@ module.exports = function (app) {
         {
             var num = (new Date()).getTime();
             widget._id = num.toString();
+            widget.width = width+"%";
+            widget.text = text;
             widget.widgetType = widgetType;
             widget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
             widgets.push(widget);
@@ -73,6 +76,7 @@ module.exports = function (app) {
                 if (widget1._id == widget._id) {
                     widgets[w].url = url;
                     widgets[w].width = width;
+                    widgets[w].text = text;
                     break;
                 }
             }
