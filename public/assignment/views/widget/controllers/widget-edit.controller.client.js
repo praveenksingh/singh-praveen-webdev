@@ -27,6 +27,8 @@
         }
 
         function getEditorTemplateUrl(type) {
+            if(type === undefined)
+                type="IMAGE";
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
 

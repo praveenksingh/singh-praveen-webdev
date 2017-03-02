@@ -22,18 +22,63 @@ module.exports = function (app) {
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
+    // function uploadImage(req, res) {
+    //     var userId = req.body.userId;
+    //     var websiteId = req.body.websiteId;
+    //     var pageId = req.body.pageId;
+    //
+    //     var widgetId      = req.body.widgetId;
+    //     var width         = req.body.width;
+    //     var myFile        = req.file;
+    //     var originalname  = myFile.originalname; // file name on user's computer
+    //     var filename      = myFile.filename;     // new file name in upload folder
+    //     var path          = myFile.path;         // full path of uploaded file
+    //     var destination   = myFile.destination;  // folder where file is saved to
+    //     var size          = myFile.size;
+    //     var mimetype      = myFile.mimetype;
+    //     var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+    //     //res.json({"url" : url});
+    //     var widget;
+    //     if(widgetId != undefined)
+    //         widget = findWidgetById(widgetId);
+    //     widget.url = '/uploads/'+filename;
+    //
+    //     var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId+"page"+pageId;
+    //     res.redirect(callbackUrl);
+    //     // res.json(url);
+    // }
+
     function uploadImage(req, res) {
-        var widgetId      = req.body.widgetId;
-        var width         = req.body.width;
-        var myFile        = req.file;
-        var originalname  = myFile.originalname; // file name on user's computer
-        var filename      = myFile.filename;     // new file name in upload folder
-        var path          = myFile.path;         // full path of uploaded file
-        var destination   = myFile.destination;  // folder where file is saved to
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
-        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-        res.json({"url" : url});
+        var widget      = req.body;
+        var width       = req.body.width;
+        var widgetId    = req.body.widgetId;
+        var widgetType  = req.body.widgetType;
+        var myFile      = req.file;
+        var pageId      = req.body.pageId;
+        var userId      = req.body.userId;
+        var websiteId   = req.body.websiteId;
+        if(widgetId === "")
+        {
+            var num = (new Date()).getTime();
+            widget._id = num.toString();
+            widget.widgetType = widgetType;
+            widget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+            widgets.push(widget);
+        }
+        else {
+            widget._id = widgetId;
+            var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+            for (var w in widgets) {
+                var widget1 = widgets[w];
+                if (widget1._id == widget._id) {
+                    widgets[w].url = url;
+                    widgets[w].width = width;
+                    break;
+                }
+            }
+        }
+
+        res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
     }
 
 
@@ -71,7 +116,7 @@ module.exports = function (app) {
         var pageId = req.params.pageId;
         var widget = req.body;
         widget.pageId = pageId;
-        widget._id = (new Date()).getTime().toString();;
+        widget._id = (new Date()).getTime().toString();
         widgets.push(widget);
         res.sendStatus(200);
     }
