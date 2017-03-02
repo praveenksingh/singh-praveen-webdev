@@ -32,7 +32,8 @@ module.exports = function (app) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-        res.json({"path" : path, "filename" : filename, "mimetype" : mimetype});
+        var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
+        res.json({"url" : url});
     }
 
 

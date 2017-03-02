@@ -3,8 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetNewController", WidgetNewController);
 
-    function WidgetNewController($routeParams,$location, WidgetService,$scope) {
-        // $scope.widget = {};
+    function WidgetNewController($routeParams,$location, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -59,8 +58,7 @@
             var promise = WidgetService.uploadImage(widget);
             promise.success(function(res) {
                 console.log(res);
-                vm.imageUrl = res.path;
-                vm.mimetype = res.mimetype;
+                vm.imageUrl = res.url;
                 vm.message = "image successfully uploaded"
             }).error(function () {
                 vm.error("could not upload image");
