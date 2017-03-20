@@ -1,76 +1,67 @@
-module.exports = function (app) {
+module.exports = function (app, model) {
     app.get('/api/user/:userId/website', findAllWebsitesForUser);
     app.post('/api/user/:userId/website', createWebsite);
     app.get('/api/website/:websiteId', findWebsiteById);
     app.put('/api/website/:websiteId', updateWebsite);
     app.delete('/api/website/:websiteId', deleteWebsite);
 
-    var websites = [
-        { "_id": "123", "name": "Facebook", update: new Date(),    "developerId": "456", "description": "Lorem" },
-        { "_id": "234", "name": "Tweeter", update: new Date(),     "developerId": "456", "description": "Lorem" },
-        { "_id": "456", "name": "Gizmodo", update: new Date(),     "developerId": "456", "description": "Lorem" },
-        { "_id": "567", "name": "Tic Tac Toe", update: new Date(), "developerId": "123", "description": "Lorem" },
-        { "_id": "678", "name": "Checkers", update: new Date(),    "developerId": "123", "description": "Lorem" },
-        { "_id": "789", "name": "Chess", update: new Date(),       "developerId": "234", "description": "Lorem" }
-    ];
+    var websiteModel = model.websiteModel;
+    var userModel = model.userModel;
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
-
-        var sites = [];
-        for(var w in websites) {
-            if(userId === websites[w].developerId) {
-                sites.push(websites[w]);
-            }
-        }
-        res.json(sites);
+        websiteModel
+            .findAllWebsitesForUser(userId)
+            .then(function (websites) {
+                res.json(websites);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function createWebsite(req, res) {
         var userId = req.params.userId;
         var website = req.body;
-        website.developerId = userId;
-        website._id = (new Date()).getTime().toString();;
-        website.update = new Date();
-        websites.push(website);
-        res.sendStatus(200);
+        websiteModel.createWebsiteForUser(userId, website)
+            .then(function (website){
+                return userModel.addWebsiteToUser(userId, website._id);
+            })
+            .then(function (website) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function findWebsiteById(req, res) {
         var wid = req.params.websiteId;
-        for(var w in websites) {
-            if(websites[w]._id === wid) {
-                res.send(websites[w]);
-                return;
-            }
-        }
-        res.sendStatus(404);
+        websiteModel
+            .findWebsiteById(wid)
+            .then(function (website) {
+                res.send(website);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function updateWebsite(req, res) {
         var websiteId = req.params['websiteId'];
-        for(var w in websites) {
-            var website = websites[w];
-            if( website._id === websiteId ) {
-                var newWebSite = req.body;
-                websites[w].name = newWebSite.name;
-                websites[w].description = newWebSite.description;
+        var newWebSite = req.body;
+        websiteModel.updateWebsite(websiteId, newWebSite)
+            .then(function (webs) {
                 res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function deleteWebsite(req, res) {
         var websiteId = req.params['websiteId'];
-        for(var w in websites) {
-            if(websites[w]._id === websiteId) {
-                websites.splice(w, 1);
+        websiteModel.deleteWebsite(websiteId)
+            .then(function () {
                 res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 };

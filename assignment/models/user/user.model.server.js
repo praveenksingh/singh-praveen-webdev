@@ -1,7 +1,7 @@
 module.exports = function (model) {
     var q = require('q');
     var mongoose = require('mongoose');
-    var userSchema = require('./user.schema.server')();
+    var userSchema = require('./user.schema.server.js')();
 
     var userModel = mongoose.model('Users', userSchema);
 
@@ -11,9 +11,21 @@ module.exports = function (model) {
         deleteUser: deleteUser,
         updateUser: updateUser,
         findUser: findUser,
-        findUserByCredentials: findUserByCredentials
+        findUserByCredentials: findUserByCredentials,
+        addWebsiteToUser : addWebsiteToUser
     };
     return api;
+
+    function addWebsiteToUser(userId, websiteId) {
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                user.websites.push(websiteId);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
 
     function findUser(userName) {
         var deferred = q.defer();
@@ -39,7 +51,7 @@ module.exports = function (model) {
             .findById(userId, function (err, user) {
                 user.firstName = newUser.firstName;
                 user.lastName = newUser.lastName;
-                user.emailId = newUser.emailId;
+                user.email = newUser.email;
                 user.save();
                 deferred.resolve(user);
             });
@@ -66,7 +78,7 @@ module.exports = function (model) {
                 if(err) {
                     deferred.abort(err);
                 } else {
-                    deferred.resolve(user);
+                    deferred.resolve(user._doc);
                 }
             });
         return deferred.promise;
@@ -78,7 +90,7 @@ module.exports = function (model) {
             if(err) {
                 deferred.abort();
             } else {
-                deferred.resolve(user);
+                deferred.resolve(doc._doc);
             }
         });
         return deferred.promise;

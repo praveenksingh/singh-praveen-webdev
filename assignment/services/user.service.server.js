@@ -21,7 +21,7 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        newUser._id = (new Date()).getTime() + "";
+        // newUser._id = (new Date()).getTime() + "";
         userModel.createUser(newUser)
             .then(function (user) {
                 res.json(user).send(200);
