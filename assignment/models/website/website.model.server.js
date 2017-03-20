@@ -1,4 +1,4 @@
-module.exports = function (model) {
+module.exports = function () {
     var q = require('q');
     var mongoose = require('mongoose');
     var websiteSchema = require('./website.schema.server')();
@@ -21,8 +21,8 @@ module.exports = function (model) {
         websiteModel
             .findById(websiteId, function (err, website) {
                 website.pages.push(pageId);
-                user.save();
-                deferred.resolve(user);
+                website.save();
+                deferred.resolve(website);
             });
         return deferred.promise;
     }
