@@ -90,7 +90,8 @@ module.exports = function () {
 
     function deleteWebsite(websiteId) {
         var deferred = q.defer();
-        websiteModel.remove({_id: websiteId}, function (err, status) {
+        websiteModel.findByIdAndRemove({_id: websiteId})
+            .exec(function (err, status) {
             if(err) {
                 deferred.abort(err);
             } else {

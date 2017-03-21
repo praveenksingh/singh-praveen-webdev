@@ -12,5 +12,19 @@ module.exports = function () {
         websites : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoAssignmentWebsites'}]
     }, {collection: 'webdev.mongo.assignment.users'});
 
+    actorSchema.pre('remove',  function(next) {
+        var websites = this.model('Websites');
+        websites.findOne({_user: this._id})
+            .exec(function(err, website){
+                if(err) {
+                    deferred.abort(err);
+                } else {
+                    website.remove();
+                    websites.remove({_id: website._id}).exec();
+                }
+            });
+        next();
+    });
+
     return actorSchema;
 };

@@ -9,5 +9,10 @@ module.exports = function () {
         pages : [{type: mongoose.Schema.Types.ObjectId, ref: 'WebdevMongoAssignmentPages'}]
     }, {collection: 'webdev.mongo.assignment.websites'});
 
+    websiteSchema.pre('remove',  function(next) {
+        console.log("called");
+        this.model('Pages').remove(
+            {_id: {$in: this.pages}}).exec();
+    });
     return websiteSchema;
 };

@@ -65,7 +65,7 @@ module.exports = function () {
     
     function deletePage(pageId) {
         var deferred = q.defer();
-        pageModel.remove({_id: pageId}, function (err, status) {
+        pageModel.findByIdAndRemove({_id: pageId}, function (err, status) {
             if(err) {
                 deferred.abort(err);
             } else {
