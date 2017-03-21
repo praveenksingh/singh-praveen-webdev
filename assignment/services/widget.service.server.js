@@ -1,6 +1,9 @@
-module.exports = function (app) {
+module.exports = function (app, model) {
     var multer  =   require('multer');
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+    var widgetModel = model.widgetModel;
+    var pageModel = model.pageModel;
 
     app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
     app.post('/api/page/:pageId/widget', createWidget);

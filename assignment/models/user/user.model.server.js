@@ -12,9 +12,22 @@ module.exports = function (model) {
         updateUser: updateUser,
         findUser: findUser,
         findUserByCredentials: findUserByCredentials,
-        addWebsiteToUser : addWebsiteToUser
+        addWebsiteToUser : addWebsiteToUser,
+        deleteWebsite : deleteWebsite
     };
     return api;
+
+    function deleteWebsite(userId, websiteId) {
+        var deferred = q.defer();
+        userModel
+            .findById(userId, function (err, user) {
+                var index = user.websites.indexOf(websiteId);
+                user.websites.splice(index, 1);
+                user.save();
+                deferred.resolve(user);
+            });
+        return deferred.promise;
+    }
 
     function addWebsiteToUser(userId, websiteId) {
         var deferred = q.defer();

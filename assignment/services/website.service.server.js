@@ -57,9 +57,22 @@ module.exports = function (app, model) {
 
     function deleteWebsite(req, res) {
         var websiteId = req.params['websiteId'];
-        websiteModel.deleteWebsite(websiteId)
-            .then(function () {
-                res.sendStatus(200);
+        websiteModel
+            .findWebsiteById(websiteId)
+            .then(function (website) {
+                websiteModel
+                    .deleteWebsite(websiteId)
+                    .then(function (status) {
+                        userModel
+                            .deleteWebsite(website._user, websiteId)
+                            .then(function (status) {
+                                res.sendStatus(200);
+                            }, function (err) {
+                                res.sendStatus(500).send(err);
+                            });
+                }, function (err) {
+                    res.sendStatus(500).send(err);
+                });
             }, function (err) {
                 res.sendStatus(500).send(err);
             });

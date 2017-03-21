@@ -58,9 +58,22 @@ module.exports = function (app, model) {
 
     function deletePage(req, res) {
         var pageId = req.params['pageId'];
-        pageModel.deletePage(pageId)
-            .then(function () {
-                res.sendStatus(200);
+        pageModel
+            .findPageById(pageId)
+            .then(function (page) {
+                pageModel
+                    .deletePage(pageId)
+                    .then(function (status) {
+                        websiteModel
+                            .deletePageForWebsite(page._website, pageId)
+                            .then(function (status) {
+                                res.sendStatus(200);
+                            }, function (err) {
+                                res.sendStatus(500).send(err);
+                            });
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
             }, function (err) {
                 res.sendStatus(500).send(err);
             });

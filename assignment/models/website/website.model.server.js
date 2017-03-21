@@ -12,9 +12,22 @@ module.exports = function () {
         findWebsiteById: findWebsiteById,
         updateWebsite: updateWebsite,
         deleteWebsite: deleteWebsite,
-        addPageToWebsite : addPageToWebsite
+        addPageToWebsite : addPageToWebsite,
+        deletePageForWebsite : deletePageForWebsite
     };
     return api;
+
+    function deletePageForWebsite(websiteId, pageId) {
+        var deferred = q.defer();
+        websiteModel
+            .findById(websiteId, function (err, website) {
+                var index = website.pages.indexOf(pageId);
+                website.pages.splice(index, 1);
+                website.save();
+                deferred.resolve(website);
+            });
+        return deferred.promise;
+    }
 
     function addPageToWebsite(websiteId, pageId) {
         var deferred = q.defer();
