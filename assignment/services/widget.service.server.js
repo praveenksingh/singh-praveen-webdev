@@ -62,15 +62,6 @@ module.exports = function (app, model) {
                 }, function (err) {
                     res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/");
                 });
-            // for (var w in widgets) {
-            //     var widget1 = widgets[w];
-            //     if (widget1._id == widget._id) {
-            //         widgets[w].url = url;
-            //         widgets[w].width = width;
-            //         widgets[w].text = text;
-            //         break;
-            //     }
-            // }
         }
 
         res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
@@ -81,17 +72,24 @@ module.exports = function (app, model) {
         var initial = req.query['initial'];
         var final = req.query['final'];
         var pageId = req.params.pageId;
-        var widgetsList = [];
-        widgets = widgets.filter(function(x) {
-            if(pageId === x.pageId) {
-                widgetsList.push(x);
-            }
-            return widgets.indexOf(x) < 0
-        });
-        var widget  = widgetsList[initial];
-        widgetsList.splice(initial, 1);
-        widgetsList.splice(final,0, widget);
-        widgets.push.apply(widgets, widgetsList);
+        // var widgetsList = [];
+        // widgets = widgets.filter(function(x) {
+        //     if(pageId === x.pageId) {
+        //         widgetsList.push(x);
+        //     }
+        //     return widgets.indexOf(x) < 0
+        // });
+        widgetModel
+            .reorderWidget(pageId, initial, final)
+            .then(function (widgets) {
+                res.sendStatus(200);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
+        // var widget  = widgetsList[initial];
+        // widgetsList.splice(initial, 1);
+        // widgetsList.splice(final,0, widget);
+        // widgets.push.apply(widgets, widgetsList);
         res.sendStatus(200);
     }
 

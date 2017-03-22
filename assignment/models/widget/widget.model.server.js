@@ -77,6 +77,30 @@ module.exports = function () {
     }
     
     function reorderWidget(pageId, start, end) {
-        
+        var deferred = q.defer();
+        widgetModel
+            .find({_page : pageId}, function (err, widgets) {
+                if (err) {
+                    deferred.abort(err);
+                } else {
+                    var widget  = widgets[start];
+                    widgets.splice(start, 1);
+                    widgets.splice(end,0, widget);
+                    widgetModel.remove({_page: {$in: pageId}}, function(err, success){
+                        if(err){
+                            deferred.abort(err);
+                        } else{
+                            widgetModel.insertMany(widgets)
+                                .then(function(docs) {
+                                    deferred.resolve(docs);
+                                })
+                                .catch(function(err) {
+                                    deferred.abort(err);
+                                });
+                        }
+                    });
+                }
+            });
+        return deferred.promise;
     }
 };

@@ -42,6 +42,13 @@
         <input  name="url"        value="{{model.widget.url}}"       style="display: none"/>
         <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
     </form>
+    <div>
+        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr"
+           class="btn btn-success btn-block">
+            Search
+        </a>
+        <div id="a1"></div>
+    </div>
 
     <div ng-show="model.updateWi" class="form-group">
         <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
