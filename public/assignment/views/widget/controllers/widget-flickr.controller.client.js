@@ -40,9 +40,7 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             console.log(url);
-            //var widget = WidgetService.findWidgetById(vm.widgetId);
             vm.widget.url =url;
-            //console.log(widget);
             WidgetService
                 .updateWidget(vm.widgetId, vm.widget)
                 .then(function () {

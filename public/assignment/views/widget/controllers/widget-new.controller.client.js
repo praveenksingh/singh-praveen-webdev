@@ -12,6 +12,7 @@
         vm.setWidgetTypeType = setWidgetTypeType;
         vm.addWidget = addWidget;
         vm.uploadImg = uploadImg;
+        vm.createImageWidget = createImageWidget;
 
         function init(){
             vm.showFlag = false;
@@ -56,6 +57,18 @@
                 vm.error = 'sorry could not create';
             });
         }
+
+        function createImageWidget(widget) {
+            var promiseNew = WidgetService.createWidget(vm.pageId, widget);
+            promiseNew.success(function(res){
+                    vm.showFlag = false;
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+res._id+"/flickr");
+                })
+                .error(function () {
+                    vm.error = 'sorry could not create';
+                });
+        }
+
 
         function uploadImg(widget) {
             var promise = WidgetService.uploadImage(widget);

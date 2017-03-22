@@ -113,10 +113,10 @@ module.exports = function (app, model) {
         var pageId = req.params.pageId;
         var widget = req.body;
         widgetModel.createWidget(pageId, widget)
-            .then(function (widget) {
-                pageModel.addWidgetToPage(pageId, widget._id)
+            .then(function (widgets) {
+                pageModel.addWidgetToPage(pageId, widgets._id)
                     .then(function (widget) {
-                        res.json(widget).send(200);
+                        res.json(widgets).send(200);
                     }, function (err) {
                         res.sendStatus(500).send(err);
                     });

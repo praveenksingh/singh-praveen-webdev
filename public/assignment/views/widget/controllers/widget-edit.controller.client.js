@@ -13,6 +13,7 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.updateWidget = updateWidget;
         vm.deleteWidget = deleteWidget;
+        //vm.createImageWidget = createImageWidget;
 
 
         function init() {
@@ -33,13 +34,24 @@
         }
 
         function deleteWidget() {
-            var promise = WidgetService.deleteWidget(vm.widgetId)
+            var promise = WidgetService.deleteWidget(vm.widgetId);
             promise.success(function () {
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
             })
             .error(function () {
                 vm.error = "unable to delete website";
             });
+        }
+
+        function createImageWidget(widget) {
+            var promise = WidgetService.createWidget(vm.pageId, widget);
+            promise.success(function(){
+                vm.showFlag = false;
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget"+widget._id+"/flickr");
+            })
+                .error(function () {
+                    vm.error = 'sorry could not create';
+                });
         }
 
         function updateWidget(widget) {

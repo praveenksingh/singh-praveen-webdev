@@ -42,8 +42,9 @@
         <input  name="url"        value="{{model.widget.url}}"       style="display: none"/>
         <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
     </form>
+
     <div>
-        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}/flickr"
+        <a ng-click="model.createImageWidget(model.widget)"
            class="btn btn-success btn-block">
             Search
         </a>
