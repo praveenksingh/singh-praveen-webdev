@@ -75,7 +75,14 @@ module.exports = function () {
         return deferred.promise;
     }
 
-    function addWidgetToPage(websiteId, pageId) {
-
+    function addWidgetToPage(pageId, widgetId) {
+        var deferred = q.defer();
+        pageModel
+            .findById(pageId, function (err, page) {
+                page.widgets.push(widgetId);
+                page.save();
+                deferred.resolve(page);
+            });
+        return deferred.promise;
     }
 };

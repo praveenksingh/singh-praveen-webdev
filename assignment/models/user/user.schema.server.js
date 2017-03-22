@@ -14,13 +14,15 @@ module.exports = function () {
 
     actorSchema.pre('remove',  function(next) {
         var websites = this.model('Websites');
-        websites.findOne({_user: this._id})
+        websites.find({_user: this._id})
             .exec(function(err, website){
                 if(err) {
                     deferred.abort(err);
                 } else {
-                    website.remove();
-                    websites.remove({_id: website._id}).exec();
+                    for(var w in website) {
+                        website[w].remove();
+                        websites.remove({_id: website[w]._id}).exec();
+                    }
                 }
             });
         next();

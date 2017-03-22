@@ -44,8 +44,8 @@
                 }else{
                     widget.url = vm.imageUrl;
                 }
-            var promise = WidgetService.createWidget(vm.pageId, widget);
-            promise.success(function(){
+            WidgetService.createWidget(vm.pageId, widget)
+            .success(function(){
                 vm.showFlag = false;
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
             })

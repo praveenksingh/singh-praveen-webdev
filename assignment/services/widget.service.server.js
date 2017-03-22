@@ -25,32 +25,6 @@ module.exports = function (app, model) {
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
 
-    // function uploadImage(req, res) {
-    //     var userId = req.body.userId;
-    //     var websiteId = req.body.websiteId;
-    //     var pageId = req.body.pageId;
-    //
-    //     var widgetId      = req.body.widgetId;
-    //     var width         = req.body.width;
-    //     var myFile        = req.file;
-    //     var originalname  = myFile.originalname; // file name on user's computer
-    //     var filename      = myFile.filename;     // new file name in upload folder
-    //     var path          = myFile.path;         // full path of uploaded file
-    //     var destination   = myFile.destination;  // folder where file is saved to
-    //     var size          = myFile.size;
-    //     var mimetype      = myFile.mimetype;
-    //     var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-    //     //res.json({"url" : url});
-    //     var widget;
-    //     if(widgetId != undefined)
-    //         widget = findWidgetById(widgetId);
-    //     widget.url = '/uploads/'+filename;
-    //
-    //     var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId+"page"+pageId;
-    //     res.redirect(callbackUrl);
-    //     // res.json(url);
-    // }
-
     function uploadImage(req, res) {
         var widget      = req.body;
         var width       = req.body.width;
@@ -109,23 +83,29 @@ module.exports = function (app, model) {
 
     function findAllWidgetsForPage(req, res) {
         var pageId = req.params.pageId;
-
-        var widgetsList = [];
-        for(var w in widgets) {
-            if(pageId === widgets[w].pageId) {
-                widgetsList.push(widgets[w]);
-            }
-        }
-        res.json(widgetsList);
+        widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                res.json(widgets);
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function createWidget(req, res) {
         var pageId = req.params.pageId;
         var widget = req.body;
-        widget.pageId = pageId;
-        widget._id = (new Date()).getTime().toString();
-        widgets.push(widget);
-        res.sendStatus(200);
+        widgetModel.createWidget(pageId, widget)
+            .then(function (widget) {
+                pageModel.addWidgetToPage(pageId, widget._id)
+                    .then(function (widget) {
+                        res.json(widget).send(200);
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
+            }, function (err) {
+                res.sendStatus(500).send(err);
+            });
     }
 
     function findWidgetById(req, res) {

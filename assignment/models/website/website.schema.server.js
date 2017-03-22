@@ -10,9 +10,23 @@ module.exports = function () {
     }, {collection: 'webdev.mongo.assignment.websites'});
 
     websiteSchema.pre('remove',  function(next) {
-        console.log("called");
-        this.model('Pages').remove(
-            {_id: {$in: this.pages}}).exec();
+        // console.log("called");
+        var pages = this.model('Pages');
+        // this.model('Pages').remove(
+        //     {_id: {$in: this.pages}}).exec();
+        pages.find({_website: this._id})
+            .exec(function(err, pagesList){
+                if(err) {
+                    deferred.abort(err);
+                } else {
+                    for(var p in pagesList) {
+                        pagesList[p].remove();
+                        pages.remove({_id: pagesList[p]._id}).exec();
+                    }
+                }
+            });
+        next();
+
     });
     return websiteSchema;
 };

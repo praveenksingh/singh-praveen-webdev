@@ -24,7 +24,12 @@ module.exports = function (app, model) {
         var website = req.body;
         websiteModel.createWebsiteForUser(userId, website)
             .then(function (website){
-                return userModel.addWebsiteToUser(userId, website._id);
+                userModel.addWebsiteToUser(userId, website._id)
+                    .then(function (status) {
+                        res.sendStatus(200);
+                    }, function (err) {
+                        res.sendStatus(500).send(err);
+                    });
             })
             .then(function (website) {
                 res.sendStatus(200);
