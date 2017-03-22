@@ -1,10 +1,18 @@
 <h1>HTML</h1>
 <form>
-    <label>Name</label>
-    <input ng-model="model.widget.name" class="form-control form-group"/>
+    <div class="form-group">
+        <label>Name</label>
+        <input ng-model="model.widget.name" class="form-control form-group"/>
 
-    <label>Text</label>
-    <input ng-model="model.widget.text" class="form-control form-group"/>
+        <div ng-model="model.widget.text"
+             text-angular
+             ta-toolbar="[['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'quote'],
+            ['bold','italics','underline','strikeThrough', 'ul', 'ol', 'redo', 'undo', 'clear'],
+            ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+            ['indent','outdent'],['html', 'insertImage','insertLink', 'wordcount', 'charcount']]">
+        </div>
+
+    </div>
 
     <div ng-show="model.updateWi" class="form-group">
         <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">
