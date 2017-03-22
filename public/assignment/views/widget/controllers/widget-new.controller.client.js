@@ -38,14 +38,17 @@
                 else
                     widget.width = widget.width + "%";
 
-                if(vm.widgetType === "IMAGE" && vm.imageUrl === undefined){
-                    vm.error = 'Upload Image First';
-                    return;
-                }else{
-                    widget.url = vm.imageUrl;
+                if(vm.widgetType === "IMAGE"){
+                    if(vm.imageUrl === undefined) {
+                        vm.error = 'Upload Image First';
+                        return;
+                    }else{
+                        widget.url = vm.imageUrl;
+                    }
                 }
-            WidgetService.createWidget(vm.pageId, widget)
-            .success(function(){
+
+            var promise = WidgetService.createWidget(vm.pageId, widget);
+            promise.success(function(){
                 vm.showFlag = false;
                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
             })

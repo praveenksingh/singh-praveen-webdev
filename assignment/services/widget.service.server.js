@@ -41,8 +41,13 @@ module.exports = function (app, model) {
             widget.text = text;
             widget.widgetType = widgetType;
             widget.url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
-            widgetModel.createWidget(pageId, widget);
-            // widgets.push(widget);
+            widgetModel.createWidget(pageId, widget)
+                .then(function (widget) {
+                    res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
+                }, function (err) {
+                    res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/");
+                });
+
         }
         else {
             var url = req.protocol + '://' +req.get('host')+"/uploads/"+myFile.filename;
@@ -64,7 +69,7 @@ module.exports = function (app, model) {
                 });
         }
 
-        res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
+        // res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
     }
 
 
