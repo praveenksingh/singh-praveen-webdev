@@ -23,7 +23,7 @@ module.exports = function () {
                 deferred.abort();
             } else {
                 deferred.resolve(doc._doc);
-                console.log(doc._doc._id);
+                // console.log(doc._doc._id);
             }
         });
         return deferred.promise;

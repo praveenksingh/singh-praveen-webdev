@@ -4,8 +4,10 @@
                             ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['html']]">
 </div>
 <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
-       placeholder="{{model.widget.placeholder}}"
+       placeholder="{{widget.placeholder}}"
        class="form-control"/>
 <textarea ng-if="!widget.formatted && (widget.rows > 1)"
           rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
-          class="form-control">{{model.widget.text}}</textarea>
+          class="form-control">{{widget.text}}</textarea>
+
+{{widget.text}}
