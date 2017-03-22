@@ -41,6 +41,7 @@
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             console.log(url);
             vm.widget.url =url;
+            vm.widget.widgetType = "IMAGE";
             WidgetService
                 .updateWidget(vm.widgetId, vm.widget)
                 .then(function () {
