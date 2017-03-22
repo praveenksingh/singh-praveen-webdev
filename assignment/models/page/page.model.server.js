@@ -11,9 +11,22 @@ module.exports = function () {
         findPageById: findPageById,
         updatePage: updatePage,
         deletePage: deletePage,
-        addWidgetToPage : addWidgetToPage
+        addWidgetToPage : addWidgetToPage,
+        deleteWidgetFromPage : deleteWidgetFromPage
     };
     return api;
+
+    function deleteWidgetFromPage(pageId, widgetId) {
+        var deferred = q.defer();
+        pageModel
+            .findById(pageId, function (err, page) {
+                var index = page.widgets.indexOf(widgetId);
+                page.widgets.splice(index, 1);
+                page.save();
+                deferred.resolve(page);
+            });
+        return deferred.promise;
+    }
 
     function createPage(websiteId, page) {
         var deferred = q.defer();
