@@ -12,9 +12,26 @@ module.exports = function () {
         updatePage: updatePage,
         deletePage: deletePage,
         addWidgetToPage : addWidgetToPage,
-        deleteWidgetFromPage : deleteWidgetFromPage
+        deleteWidgetFromPage : deleteWidgetFromPage,
+        reorderWidget : reorderWidget
     };
     return api;
+
+    function reorderWidget(pageId, start, end) {
+        var deferred = q.defer();
+        pageModel.findById(pageId, function (err, page) {
+            page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0])
+            page.markModified('widgets');
+            page.save(function(err,page){
+                    if(err){
+                        deferred.abort();
+                    }else{
+                        deferred.resolve(page.widgets);
+                    }
+            });
+        });
+        return deferred.promise;
+    }
 
     function deleteWidgetFromPage(pageId, widgetId) {
         var deferred = q.defer();

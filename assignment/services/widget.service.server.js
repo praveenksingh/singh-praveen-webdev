@@ -60,8 +60,6 @@ module.exports = function (app, model) {
                     res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/");
                 });
         }
-
-        // res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/"+widget._id);
     }
 
 
@@ -69,13 +67,6 @@ module.exports = function (app, model) {
         var initial = req.query['initial'];
         var final = req.query['final'];
         var pageId = req.params.pageId;
-        // var widgetsList = [];
-        // widgets = widgets.filter(function(x) {
-        //     if(pageId === x.pageId) {
-        //         widgetsList.push(x);
-        //     }
-        //     return widgets.indexOf(x) < 0
-        // });
         widgetModel
             .reorderWidget(pageId, initial, final)
             .then(function (widgets) {
@@ -83,10 +74,6 @@ module.exports = function (app, model) {
             }, function (err) {
                 res.sendStatus(500).send(err);
             });
-        // var widget  = widgetsList[initial];
-        // widgetsList.splice(initial, 1);
-        // widgetsList.splice(final,0, widget);
-        // widgets.push.apply(widgets, widgetsList);
         res.sendStatus(200);
     }
 
@@ -99,6 +86,19 @@ module.exports = function (app, model) {
             }, function (err) {
                 res.sendStatus(500).send(err);
             });
+
+        // var widgets = [];
+        // pageModel.findPageById(pageId)
+        //     .then(function (page) {
+        //         widgetModel.findWidgetsByWidgetIdList(page.widgets)
+        //             .then(function (widgets){
+        //                 res.json(widgets);
+        //         }, function(err){
+        //                 res.sendStatus(500).send(err);
+        //         })
+        //     }, function (err) {
+        //         res.sendStatus(500).send(err);
+        //     });
     }
 
     function createWidget(req, res) {

@@ -11,9 +11,19 @@ module.exports = function () {
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
         deleteWidget: deleteWidget,
-        reorderWidget: reorderWidget
+        reorderWidget: reorderWidget,
+        findWidgetsByWidgetIdList : findWidgetsByWidgetIdList
     };
     return api;
+
+    function findWidgetsByWidgetIdList(widgetsIdList) {
+        var deferred = q.defer();
+        widgetModel
+            .find({'_id': { $in: widgetsIdList}}, function (err, widgets) {
+                deferred.resolve(widgets);
+            });
+        return deferred.promise;
+    }
 
     function createWidget(pageId, widget) {
         var deferred = q.defer();
