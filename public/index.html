@@ -1,61 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="WebDev-Spring 2017">
-    <meta name="author" content="Praveen Kumar Singh">
-    <title>Praveen Singh - WebDev Spring 2017</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <!-- Custom style-->
-    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Praveen Kumar Singh</title>
+
+    <!-- CSS  -->
+    <link href="min/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="min/custom-min.css" type="text/css" rel="stylesheet" >
 </head>
+<body id="top" class="scrollspy">
 
-<body>
-
-<div class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">WebDev Spring 2017</h3>
-    </div>
-
-    <div style="background:aliceblue !important" class="jumbotron">
-        <h2>Praveen Kumar Singh</h2>
-        <p class="lead">Home page for assignments for the course CS 5610 - WebDevelopment (Spring, 2017)
-                        </p>
-    </div>
-
-    <div class="row marketing">
-        <div class="col-sm-6">
-            <div class="project"></div>
-            <a href="https://book-your-flight.herokuapp.com/" class="thumbnail purple" style="background: lavenderblush">Project</a>
-        </div>
-        <div class="col-sm-6">
-            <a href="assignment/index.html#login" class="thumbnail purple" style="background: lavenderblush">Assignment</a>
-        </div>
-        <div class="col-sm-6">
-            <div class="testdb"></div>
-            <a href="test/index.html" class="thumbnail purple" style="background: lavenderblush">Test MongoDB</a>
-        </div>
-        <div class="col-sm-6">
-            <div class="GitHubUrl"></div>
-            <a href="https://github.com/praveenksingh/singh-praveen-webdev" class="thumbnail purple"
-               style="background: lavenderblush">GitHub URL</a>
-        </div>
-    </div>
-
-    <div></div>
-    <footer class="footer">
-        <p>Praveen Kumar Singh</p>
-    </footer>
-
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
 </div>
 
-</body>
-</html>
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="default_color" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="#" id="logo-container" class="brand-logo">Praveen</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#intro">About</a></li>
+                    <li><a href="#work">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://www.dropbox.com/s/r534vffd04r7v2q/PraveenKumarSingh_Resume.pdf?dl=0" target="_blank">Resume</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#intro">About</a></li>
+                    <li><a href="#work">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://www.dropbox.com/s/r534vffd04r7v2q/PraveenKumarSingh_Resume.pdf?dl=0" target="_blank">Resume</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
 
+<!--Hero-->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <h1 class="text_h center header cd-headline letters type">
+            <span>Hi There,</span>
+            <span class="cd-words-wrapper waiting">
+                <b class="is-visible">I am Praveen Singh</b>
+                <b>I am a Student by Profession</b>
+                <b>and a Developer at Heart</b>
+            </span>
+        </h1>
+    </div>
+</div>
+
+<!--Intro and service-->
+<div id="intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h2 class="center header text_h2"> I am currently attending <span class="span_h2">Northeastern University, </span>
+                    Boston, MA and will be graduating in May 2018 with a Master’s degree in <span class="span_h2">Computer Science.</span>
+                    <!--<span class="span_h2"> Phasellus  </span>vestibulum lorem risus, nec suscipit lorem <span class="span_h2"> laoreet quis.</span> </h2>-->
+            </div>
+
+            <div  class="col s12 m6 l6">
+                <div class="center promo promo-example">
+                    <i class="mdi-image-flash-on"></i>
+                    <h5 class="promo-caption">Techinical Skills</h5>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
+                </div>
+            </div>
+            <div class="col s12 m6 l6">
+                <div class="center promo promo-example">
+                    <i class="mdi-social-group"></i>
+                    <h5 class="promo-caption">Experience</h5>
+                    <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                </div>
+            </div>
+            <!--<div class="col s12 m4 l4">-->
+                <!--<div class="center promo promo-example">-->
+                    <!--<i class="mdi-hardware-desktop-windows"></i>-->
+                    <!--<h5 class="promo-caption">Fully responsive</h5>-->
+                    <!--<p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+<!--Work-->
+<div class="section scrollspy" id="work">
+    <div class="container">
+        <h2 class="header text_b">Projects</h2>
+        <div class="row">
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="img/project1.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Book Your Flight <i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="https://book-your-flight.herokuapp.com" target="_blank">Link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="img/project2.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">JustAmazeMe<i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="http://www.justamazeme.com" target="_blank">Link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Project Title <i class="mdi-navigation-close right"></i></span>
+                        <p>Here is some more information about this project that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="img/project3.png">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Assignments<i class="mdi-navigation-more-vert right"></i></span>
+                        <p><a href="https://singh-praveen-webdev.herokuapp.com/assignment/index.html#/login" target="_blank">Link</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">CS5610 Spring 2017 Assignment<i class="mdi-navigation-close right"></i></span>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Parallax-->
+<div class="parallax-container">
+    <div class="parallax"><img src="img/parallax.jpg"></div>
+</div>
+
+
+<!--Footer-->
+<footer id="contact" class="page-footer default_color scrollspy">
+    <div class="container">  
+        <div class="row">
+            <div class="col l6 s12">
+                <!--<form class="col s12" action="contact.php" method="post">-->
+                    <!--<div class="row">-->
+                        <!--<div class="input-field col s6">-->
+                            <!--<i class="mdi-action-account-circle prefix white-text"></i>-->
+                            <!--<input id="icon_prefix" name="name" type="text" class="validate white-text">-->
+                            <!--<label for="icon_prefix" class="white-text">First Name</label>-->
+                        <!--</div>-->
+                        <!--<div class="input-field col s6">-->
+                            <!--<i class="mdi-communication-email prefix white-text"></i>-->
+                            <!--<input id="icon_email" name="email" type="email" class="validate white-text">-->
+                            <!--<label for="icon_email" class="white-text">Email-id</label>-->
+                        <!--</div>-->
+                        <!--<div class="input-field col s12">-->
+                            <!--<i class="mdi-editor-mode-edit prefix white-text"></i>-->
+                            <!--<textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>-->
+                            <!--<label for="icon_prefix2" class="white-text">Message</label>-->
+                        <!--</div>-->
+                        <!--<div class="col offset-s7 s5">-->
+                            <!--<button class="btn waves-effect waves-light red darken-1" type="submit">Submit-->
+                                <!--<i class="mdi-content-send right white-text"></i>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Praveen Singh</h5>
+                <ul>
+                    <li><a class="white-text" href="#index-banner">Home</a></li>
+                    <li><a class="white-text" href="https://www.dropbox.com/s/r534vffd04r7v2q/PraveenKumarSingh_Resume.pdf?dl=1">Download Resume</a></li>
+                </ul>
+            </div>
+            <div class="col l3 s12">
+                <h5 class="white-text">Social</h5>
+                <ul>
+                    <li>
+                        <a class="white-text" href="https://www.facebook.com/meetpraveen">
+                            <i class="small fa fa-facebook-square white-text"></i> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://github.com/praveenksingh">
+                            <i class="small fa fa-github-square white-text"></i> Github
+                        </a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="https://www.linkedin.com/in/praveen-singh/">
+                            <i class="small fa fa-linkedin-square white-text"></i> Linkedin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright default_color">
+        <!--<div class="container">-->
+            <!--Made by <a class="white-text" href="http://joashpereira.com">Praveen Singh</a>. Thanks to <a class="white-text" href="http://materializecss.com/">materializecss</a>-->
+        <!--</div>-->
+    </div>
+</footer>
+
+    <script src="min/plugin-min.js"></script>
+    <script src="min/custom-min.js"></script>
+
+    </body>
+</html>
